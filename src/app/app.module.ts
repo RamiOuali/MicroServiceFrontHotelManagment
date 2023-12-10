@@ -12,6 +12,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RoomListComponent } from './Room/room-list/room-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     EmployeeManagementComponent,
     EmployeeListComponent,
     EmployeeAddComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,
