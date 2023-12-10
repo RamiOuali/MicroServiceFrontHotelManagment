@@ -1,0 +1,132 @@
+<div style="padding: 100px; margin-left: 300px">
+  <button class="btn btn-primary" routerLink="/employee" >Go back to list</button>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name:</label>
+      <input
+        type="text"
+        formControlName="firstName"
+        id="firstName"
+        class="form-control"
+        [(ngModel)]="emp.firstName"
+      />
+      <div
+        *ngIf="form.firstName.errors?.['required'] && form.firstName.errors?.touched"
+        class="text-danger"
+      >
+        First Name is required.
+      </div>
+      <div
+        *ngIf="form.firstName.errors?.['minlength'] && form.firstName.errors?.touched"
+        class="text-danger"
+      >
+        First Name must be at least 4 characters long.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name:</label>
+      <input
+        type="text"
+        formControlName="lastName"
+        id="lastName"
+        class="form-control"
+        [(ngModel)]="emp.lastName"
+      />
+      <div
+        *ngIf="form.lastName.errors?.['required'] && form.lastName.errors?.touched"
+        class="text-danger"
+      >
+        Last Name is required.
+      </div>
+      <div
+        *ngIf="form.lastName.errors?.['minlength'] && form.lastName.errors?.touched"
+        class="text-danger"
+      >
+        Last Name must be at least 4 characters long.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        class="form-control"
+        [(ngModel)]="emp.email"
+      />
+      <div
+        *ngIf="form.email.errors?.['required'] && form.email.errors?.touched"
+        class="text-danger"
+      >
+        Email is required.
+      </div>
+      <div
+        *ngIf="form.email.errors?.['email'] && form.email.errors?.touched"
+        class="text-danger"
+      >
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number:</label>
+      <input
+        type="text"
+        formControlName="phoneNumber"
+        id="phoneNumber"
+        class="form-control"
+        [(ngModel)]="emp.phoneNumber"
+      />
+      <div
+        *ngIf="form.phoneNumber.errors?.['required'] && form.phoneNumber.errors?.touched"
+        class="text-danger"
+      >
+        Phone Number is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="salary" class="form-label">Salary:</label>
+      <input
+        type="text"
+        formControlName="salary"
+        id="salary"
+        class="form-control"
+        [(ngModel)]="emp.salary"
+      />
+      <div
+        *ngIf="form.salary.errors?.['required'] && form.salary.errors?.touched"
+        class="text-danger"
+      >
+        Salary is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="role" class="form-label">Role:</label>
+      <input
+        type="text"
+        formControlName="role"
+        id="role"
+        class="form-control"
+        [(ngModel)]="emp.role"
+      />
+      <div
+        *ngIf="form.role.errors?.['required'] && form.role.errors?.touched"
+        class="text-danger"
+      >
+        Role is required.
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="employeeForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

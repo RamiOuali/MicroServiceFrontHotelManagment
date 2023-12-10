@@ -1,0 +1,44 @@
+<div style="padding: 100px; margin-left: 300px">
+  <button class="btn btn-primary" routerLink="/employee/add">
+    Add employee
+  </button>
+
+  <div class="content container" role="main">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Hire Date</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeList">
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.phoneNumber }}</td>
+          <td>{{ employee.hireDate | date : "short" }}</td>
+          <td>{{ employee.role }}</td>
+          <td>{{ employee.salary | currency : "USD" : "symbol" : "1.2-2" }}</td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              routerLink="edit/{{ employee.id }}"
+            >
+              Edit
+            </button>
+            <button class="btn btn-danger" (click)="deleteEmp(employee.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
