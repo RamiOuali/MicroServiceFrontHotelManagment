@@ -1,3 +1,4 @@
+import { ReclamationsComponent } from './Reclamations/reclamations/reclamations.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeListComponent } from './employee-management/employee-list/employee-list.component';
@@ -5,6 +6,7 @@ import { EmployeeListComponent } from './employee-management/employee-list/emplo
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { AllEventsComponent } from './event-management/all-events/all-events.component';
+import { RoomListComponent } from './Room/room-list/room-list.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,16 @@ const routes: Routes = [
   {
     path: 'res',
     loadChildren: () => import('./reservations-management/reservation.module').then(m => m.ReservationModule),
-    
+  },
+  {
+    path: 'rooms',
+    component: RoomListComponent,
+  //  canActivate: [AuthGuard],
+  },
+  {
+    path: 'reclamation',
+    component: ReclamationsComponent,
+  //  canActivate: [AuthGuard],
   },
 
 ];

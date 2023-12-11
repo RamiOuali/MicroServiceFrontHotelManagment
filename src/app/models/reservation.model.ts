@@ -7,6 +7,9 @@ export interface Reservation {
 }
 
 export enum  TypeR {
-    Room  = 'Room',
-    Event = 'Event',
+    BUG='BUG',
+    FEATURE_REQUEST="FEATURE_REQUES",
+    GENERAL_FEEDBACK=" GENERAL_FEEDBACK",
+    OTHER=" OTHER"
+
   }

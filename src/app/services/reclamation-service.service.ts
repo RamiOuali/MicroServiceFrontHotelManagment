@@ -16,12 +16,12 @@ export class ReclamationServiceService {
   }
 
   addReclamation(reclamation: Reclamation): Observable<any> { 
-    const url = 'http://localhost:8085/reclamation/add';
+    const url = 'http://localhost:8085/reclamation/addreclamation';
     return this.http.post<any>(url, reclamation); 
   }
 
-  updateReclamation( reclamation: Reclamation): Observable<any> {
-    const url = `http://localhost:8085/reclamation/update`;
+  updateReclamation( reclamation: number): Observable<any> {
+    const url = `http://localhost:8085/reclamation/update/${reclamation}`;
     return this.http.put(url, reclamation);
   }
 

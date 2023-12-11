@@ -1,0 +1,47 @@
+<!-- List of Rooms -->
+<div style="padding: 100px; margin-left: 300px;">
+    <h2>Reports List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rec of reclamations">
+                <td>{{ rec.type }}</td>
+                <td>{{ rec.status }}</td>
+                <td>{{ rec.description }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="editReport(rec.id)">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteRoom(rec.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="padding: 100px; margin-left: 300px">
+    <h2>Add Room</h2>
+    <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+        <label for="type">Reclamation Type:</label>
+        <select formControlName="type">
+            <option *ngFor="let type of ReclamationTypes" [value]="type">{{ type }}</option>
+        </select>
+        <label>description</label>
+        <input formControlName="description" />
+        <button class="btn btn-primary" style="margin-left:10px" type="submit">Add Reclamation</button>
+    </form>
+</div>
+
+<div *ngIf="editing" style="padding: 100px; margin-left: 300px">
+    <h2>Edit Report</h2>
+    <form [formGroup]="editRoomForm" (ngSubmit)="onEditSubmit()">
+        <label for="status" >Status</label>
+        <input formControlName="status" />
+        <button class="btn btn-primary" style="margin-left:10px" type="submit">Update Report</button>
+    </form>
+  </div>

@@ -15,6 +15,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {EventManagementModule } from './event-management/event-management.module';
 import { ReservationModule } from './reservations-management/reservation.module';
 import { ReservationsComponent } from './reservations-management/reservations/reservations.component';
+import { RoomListComponent } from './Room/room-list/room-list.component';
+import { ReclamationsComponent } from './Reclamations/reclamations/reclamations.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ReservationsComponent } from './reservations-management/reservations/re
     EmployeeListComponent,
     EmployeeAddComponent,
     EmployeeEditComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    RoomListComponent,
+    ReclamationsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,7 @@ import { ReservationsComponent } from './reservations-management/reservations/re
     ReactiveFormsModule,
     FormsModule,
     EventManagementModule,
+    FormsModule
   ],
   // providers: [
   //   {
