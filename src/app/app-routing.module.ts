@@ -4,6 +4,7 @@ import { EmployeeListComponent } from './employee-management/employee-list/emplo
 import { AuthGuard } from './guard/auth.guard';
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
+import { RoomListComponent } from './Room/room-list/room-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
     component: EmployeeEditComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'rooms',
+    component: RoomListComponent,
+  //  canActivate: [AuthGuard],
+  },
+
 ];
 
 @NgModule({

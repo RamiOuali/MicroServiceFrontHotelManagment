@@ -1,6 +1,6 @@
 export interface Room {
     id: number;
-    Type: TypeRoom;
+    type: TypeRoom;
     status: RoomStatus;
 }
 

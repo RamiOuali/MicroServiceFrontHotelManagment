@@ -13,6 +13,7 @@ import { EmployeeAddComponent } from './employee-management/employee-add/employe
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RoomListComponent } from './Room/room-list/room-list.component';
+import { ReclamationsComponent } from './Reclamations/reclamations/reclamations.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RoomListComponent } from './Room/room-list/room-list.component';
     EmployeeListComponent,
     EmployeeAddComponent,
     EmployeeEditComponent,
-    RoomListComponent
+    RoomListComponent,
+    ReclamationsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,12 +35,12 @@ import { RoomListComponent } from './Room/room-list/room-list.component';
     FormsModule
   ],
   providers: [
-    {
+  /*  {
       provide: APP_INITIALIZER,
       useFactory: initKeycloak,
       multi: true,
       deps: [KeycloakService]
-    }
+    }*/
   ],
   bootstrap: [AppComponent]
 })

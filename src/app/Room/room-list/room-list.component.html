@@ -1,3 +1,56 @@
-<p>room-list works! heello 22
-
-</p>
+<!-- Add Room Form -->
+<div style="padding: 100px; margin-left: 300px">
+    <h2>Add Room</h2>
+    <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+      <label for="type">Room Type:</label>
+      <select formControlName="type">
+        <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+      </select>
+  
+      <label for="status">Room Status:</label>
+      <select formControlName="status">
+        <option *ngFor="let status of roomStatuses" [value]="status">{{ status }}</option>
+      </select>
+  
+      <button class="btn btn-primary"  style="margin-left:10px" type="submit">Add Room</button>
+    </form>
+  </div>
+  
+  <!-- List of Rooms -->
+  <div style="padding: 100px; margin-left: 300px;">
+    <h2>Rooms</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms">
+          <td>{{ room.type }}</td>
+          <td>{{ room.status }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editRoom(room.id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteRoom(room.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  <!-- Edit Room Form (hidden by default) -->
+  <div *ngIf="editing" style="padding: 100px; margin-left: 300px">
+    <h2>Edit Room</h2>
+    <form [formGroup]="editRoomForm" (ngSubmit)="onEditSubmit()">
+      <label for="status">Room Status:</label>
+      <select class="form-select" formControlName="status">
+        <option *ngFor="let status of roomStatuses" [value]="status">{{ status }}</option>
+      </select>
+  
+      <button type="submit">Update Room</button>
+    </form>
+  </div>
+  
