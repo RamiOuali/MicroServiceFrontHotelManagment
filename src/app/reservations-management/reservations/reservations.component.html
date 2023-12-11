@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau Centré</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .table {
+      width: 100%;
+      margin-bottom: 1rem;
+      color: #121111;
+    }
+
+    .table-bordered {
+      border: 1px solid #0c0c0c;
+    }
+
+    .table-dark {
+      color: #101010;
+      background-color: #212529;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(23, 113, 209, 0.05);
+    }
+
+    .card-with-border-radius {
+      background-color: #DDF2FD;
+      border-radius: 10px;
+      padding: 40px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card-with-border-radius">
+    <table class="table table-bordered table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Numero Réservation :</th>
+          <th>Date CheckIn</th>
+          <th>Date ChechOut</th>
+
+          <th>Validité</th>
+          <th>Type Reservation</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of list; let i = index">
+          <td>{{res.numRes}}</td>
+          <td>{{res.checkIn| date:'yyyy-MM-dd'}}</td>
+          <td>{{res.checkOut| date:'yyyy-MM-dd'}}</td>
+          <td>{{res.valid}}</td>
+          <td>{{res.typeReservation}}</td>
+          <td>
+            <button type="button" class="btn btn-lg btn-outline-primary btn-primary text-white" (click)="open5(mymodalUpdate, res.numRes)">Update</button>
+
+          </td>
+          <td>
+            <button type="button" class="btn btn-lg btn-outline-danger btn-primary text-white" (click)="deleterese(res.numRes); delete(i)">Delete</button>
+          </td>
+          
+
+          <ng-template #mymodalUpdate let-modal>
+            <!-- Contenu de votre modal de mise à jour -->
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Mise à jour de la réservation</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Contenu de votre formulaire de mise à jour -->
+              <form (ngSubmit)=" updateForm(res.numRes)">
+                <div class="mb-3">
+              <label for="updateAnnee">CheckIn:</label>
+              <input type="date" id="updateAnnee" name="updateAnnee" [(ngModel)]="newRequest4.checkIn" />
+            </div>
+
+            <div class="mb-3">
+                <label for="updateAnnee">CheckOut:</label>
+                <input type="date" id="CheckOut" name="updateAnnee" [(ngModel)]="newRequest4.checkOut" />
+              </div>
+
+            <div class="mb-3">
+              <label for="description">Validité :  </label>
+              <input type="checkbox" id="valid" name="valide" [(ngModel)]="newRequest4.valid">
+            </div>
+
+            <div class="mb-3">
+                <label for="typeReservation">TypeReservation : </label>
+                <select id="typeReservation" name="typeReservation" [(ngModel)]="newRequest4.typeReservation">
+                  <option value="Room">Room</option>
+                  <option value="Event">Event</option>
+                </select>
+              </div>
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="updateForm(res.numRes)">Mettre à jour</button>
+          </div>
+          
+          </ng-template>
+        </tr>
+        
+
+        <ng-template #mymodal4 let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">REQUEST</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="submitForm()">
+                <div class="mb-3">
+                  <label for="checkIn">CheckIn :  </label>
+                  <input type="date" id="checkIn" name="checkIn" [(ngModel)]="newRequest3.checkIn">
+                </div>
+                <div class="mb-3">
+                  <label for="checkOut">CheckOut :  </label>
+                  <input type="date" id="checkOut" name="checkOut" [(ngModel)]="newRequest3.checkOut">
+                </div>
+                <div class="mb-3">
+                  <label for="valid">Valide :  </label>
+                  <input type="checkbox" id="valid" name="valide" [(ngModel)]="newRequest3.valid">
+                </div>
+                <div class="mb-3">
+                    <label for="typeReservation">TypeReservation : </label>
+                    <select id="typeReservation" name="typeReservation" [(ngModel)]="newRequest3.typeReservation">
+                      <option value="Room">Room</option>
+                      <option value="Event">Event</option>
+                    </select>
+                  </div>
+                  
+                <button type="submit" class="btn btn-primary">SEND</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+            </div>
+          </ng-template>
+          
+        <!-- Ajoutez autant de lignes que nécessaire -->
+      </tbody>
+    </table>
+
+    <button type="button" class="close" aria-label="Close" (click)="open(mymodal4)">Add Reservation</button>
+  </div>
+</body>
+
+</html>

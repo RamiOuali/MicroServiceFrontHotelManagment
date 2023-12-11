@@ -13,6 +13,8 @@ import { EmployeeAddComponent } from './employee-management/employee-add/employe
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {EventManagementModule } from './event-management/event-management.module';
+import { ReservationModule } from './reservations-management/reservation.module';
+import { ReservationsComponent } from './reservations-management/reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import {EventManagementModule } from './event-management/event-management.module
     EmployeeManagementComponent,
     EmployeeListComponent,
     EmployeeAddComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    ReservationModule,
     KeycloakAngularModule,
     ReactiveFormsModule,
     FormsModule,

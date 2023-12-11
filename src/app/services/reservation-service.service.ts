@@ -7,7 +7,7 @@ import { Reservation } from '../models/reservation.model';
 })
 export class ReservationServiceService {
 
-  private baseUrl = 'http://localhost:8083/resv';   // Replace with your API endpoint
+  private baseUrl = 'http://localhost:8072/resv';   // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -19,17 +19,15 @@ export class ReservationServiceService {
     return this.http.get<Reservation>(`${this.baseUrl}/get/${id}`);
   }
 
-  addReservation(reservation: Reservation): Observable<any> { 
-    const url = 'http://localhost:8083/resv/add';
-    return this.http.post<any>(url, reservation); 
+  addReservation(data: any): Observable<any> {
+    return this.http.post(this.baseUrl+'/add', data)
   }
 
-  updateReservation( reservation: Reservation): Observable<any> {
-    const url = `http://localhost:8083/resv/update`;
-    return this.http.put(url, reservation);
+  UpdateReservation(data: any): Observable<any> {
+    return this.http.put(this.baseUrl+'/update', data)
   }
 
-  deleteReservation(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+  deleteReservation(id: any): Observable<any> {
+    return this.http.delete<any>(this.baseUrl + '/delete/' + id);
   }
 }

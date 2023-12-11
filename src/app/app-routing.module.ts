@@ -26,6 +26,12 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./event-management/event-management.module').then(m => m.EventManagementModule),
   },
+  {
+    path: 'res',
+    loadChildren: () => import('./reservations-management/reservation.module').then(m => m.ReservationModule),
+    
+  },
+
 ];
 
 @NgModule({
