@@ -12,6 +12,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReservationModule } from './reservations-management/reservation.module';
+import { ReservationsComponent } from './reservations-management/reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -19,24 +21,26 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     EmployeeManagementComponent,
     EmployeeListComponent,
     EmployeeAddComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    ReservationModule,
     KeycloakAngularModule,
     ReactiveFormsModule,
     FormsModule
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    }
+   // {
+     // provide: APP_INITIALIZER,
+      //useFactory: initKeycloak,
+      //multi: true,
+      //deps: [KeycloakService]
+   // }
   ],
   bootstrap: [AppComponent]
 })

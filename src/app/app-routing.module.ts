@@ -21,6 +21,12 @@ const routes: Routes = [
     component: EmployeeEditComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'res',
+    loadChildren: () => import('./reservations-management/reservation.module').then(m => m.ReservationModule),
+    
+  },
+
 ];
 
 @NgModule({
