@@ -45,7 +45,7 @@
   <div *ngIf="editing" style="padding: 100px; margin-left: 300px">
     <h2>Edit Room</h2>
     <form [formGroup]="editRoomForm" (ngSubmit)="onEditSubmit()">
-      <label for="status">Room Status:</label>
+      <label for="status">Room Status :</label>
       <select class="form-select" formControlName="status">
         <option *ngFor="let status of roomStatuses" [value]="status">{{ status }}</option>
       </select>
