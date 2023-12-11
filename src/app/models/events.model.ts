@@ -5,7 +5,7 @@ export interface Events {
     eventName: string;
     description: string;
     date: Date;
-    time: Time;
+    time: string;
     eventStatus: string;
     location: string;
     eventType: EventType;

@@ -20,12 +20,19 @@ export class EventsServiceService {
     const url = 'http://localhost:8086/Event/addEvent';
     return this.http.post<any>(url, events); 
   }
-
-  updateEvent( events: Events): Observable<any> {
-    const url = `http://localhost:8086/Event/updateEvent`;
-    return this.http.put(url, events);
+  
+  getEventById(id: number): Observable<Events> {
+    return this.http.get<Events>(`${this.baseUrl}/get/${id}`);
   }
 
+  // updateEvent( events: Events): Observable<any> {
+  //   const url = `http://localhost:8086/Event/updateEvent`;
+  //   return this.http.put(url, events);
+  // }
+  updateEvent(events: Events): Observable<any> {
+    const url = `${this.baseUrl}/updateEvent/${events.idEv}`;
+    return this.http.put(url, events);
+  }
   deleteEvent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/deleteEvent/${id}`);
   }

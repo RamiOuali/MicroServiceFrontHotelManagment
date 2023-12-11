@@ -1,25 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeListComponent } from './employee-management/employee-list/employee-list.component';
-import { AuthGuard } from './guard/auth.guard';
+//import { AuthGuard } from './guard/auth.guard';
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
+import { AllEventsComponent } from './event-management/all-events/all-events.component';
 
 const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeListComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'employee/add',
     component: EmployeeAddComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'employee/edit/:id',
     component: EmployeeEditComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./event-management/event-management.module').then(m => m.EventManagementModule),
   },
 ];
 

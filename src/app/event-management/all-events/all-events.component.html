@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau Centré</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .table {
+      width: 100%;
+      margin-bottom: 1rem;
+      color: #121111;
+    }
+
+    .table-bordered {
+      border: 1px solid #0c0c0c;
+    }
+
+    .table-dark {
+      color: #101010;
+      background-color: #212529;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(23, 113, 209, 0.05);
+    
+    }
+
+    .card-with-border-radius {
+      background-color: #fcfcfc;
+      border-radius: 10px;
+      padding: 40px;
+      margin-left: 300px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .add-event-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card-with-border-radius ">
+    <div class="button-container">
+      <button type="button" class="add-event-button" (click)="open(mymodal4)">Add Event</button>
+    </div>
+        <table class="table table-bordered table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Event ID </th>
+          <th>Event Name </th>
+          <th>Description </th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Location</th>
+          <th>Event Type</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of list; let i = index">
+          <td>{{res.idEv}}</td>
+          <td>{{res.eventName}}</td>
+          <td>{{res.description}}</td>
+          <td>{{res.date| date:'yyyy-MM-dd'}}</td>
+          <td>{{ res.time  }}</td>
+          <td>{{res.eventStatus}}</td>
+          <td>{{res.location}}</td>
+          <td>{{res.eventType}}</td>
+          <td>
+            <button type="button" class="btn btn-lg btn-success text-white" (click)="open5(mymodalUpdate, res.idEv)">Update</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-lg btn-danger  text-white" (click)="deleterese(res.idEv); delete(i)">Delete</button>
+          </td>      
+
+          <ng-template #mymodalUpdate let-modal>
+            <!-- Contenu de votre modal de mise à jour -->
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Update Event</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Contenu de votre formulaire de mise à jour -->
+              <form (ngSubmit)="updateForm(res.idEv)">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="eventName">Event Name</label>
+                      <input type="text" id="eventName" name="eventName" class="form-control" [(ngModel)]="newRequest4.eventName" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="location">Location</label>
+                      <input type="text" id="location" name="location" class="form-control" [(ngModel)]="newRequest4.location" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="date">Date</label>
+                      <input type="date" id="date" name="date" class="form-control" [(ngModel)]="newRequest4.date" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="time">Time</label>
+                      <input type="time" id="time" name="time" class="form-control" [(ngModel)]="newRequest4.time" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="eventStatus">Status</label>
+                      <input type="text" id="eventStatus" name="eventStatus" class="form-control" [(ngModel)]="newRequest4.eventStatus" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+               
+                    <div class="mb-3">
+                      <label for="description">Event Description</label>
+                      <input type="text" id="description" name="description" class="form-control" [(ngModel)]="newRequest4.description" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="eventType">Event Type</label>
+                      <select id="eventType" name="eventType" class="form-control" [(ngModel)]="newRequest4.eventType">
+                        <option value="MEETING">MEETING</option>
+                        <option value="SEMINAR">SEMINAR</option>
+                        <option value="WORKSHOP">WORKSHOP</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="updateForm(res.idEv)">Update</button>
+              <button type="button" class="btn btn-dark" (click)="modal.dismiss('Close click')">Close</button>
+            </div>
+          </ng-template>
+          
+          
+        </tr>
+        
+
+        <ng-template #mymodal4 let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add Event</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="submitForm()">
+              <div class="form-group" >  
+                  <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" class="form-control" id="eventName" name="eventName" [(ngModel)]="newRequest3.eventName" />
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newRequest3.date" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="time" class="form-control" id="time" name="time" [(ngModel)]="newRequest3.time" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="eventStatus">Status</label>
+                    <input type="text" class="form-control" id="eventStatus" name="eventStatus" [(ngModel)]="newRequest3.eventStatus" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" name="location" [(ngModel)]="newRequest3.location" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" >
+                <div class="form-group">
+                  <label for="description">Event Description</label>
+                  <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newRequest3.description" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="eventType">Event Type</label>
+                <select class="form-control" id="eventType" name="eventType" [(ngModel)]="newRequest3.eventType">
+                  <option value="MEETING">MEETING</option>
+                  <option value="SEMINAR">SEMINAR</option>
+                  <option value="WORKSHOP">WORKSHOP</option>
+                </select>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary">SEND</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-dark" (click)="modal.close('Save click')">Ok</button>
+          </div>
+        </ng-template>
+        
+        
+      </tbody>
+    </table>
+
+  </div>
+</body>
+
+</html>

@@ -7,11 +7,12 @@ import { EmployeeListComponent } from './employee-management/employee-list/emplo
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { initKeycloak } from './init-keycloak';
-import { OAuthModule } from 'angular-oauth2-oidc';
+// import { initKeycloak } from './init-keycloak';
+// import { OAuthModule } from 'angular-oauth2-oidc';
 import { EmployeeAddComponent } from './employee-management/employee-add/employee-add.component';
 import { EmployeeEditComponent } from './employee-management/employee-edit/employee-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {EventManagementModule } from './event-management/event-management.module';
 
 @NgModule({
   declarations: [
@@ -28,16 +29,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttpClientModule,
     KeycloakAngularModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    EventManagementModule,
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    }
-  ],
+  // providers: [
+  //   {
+  //     provide: APP_INITIALIZER,
+  //     useFactory: initKeycloak,
+  //     multi: true,
+  //     deps: [KeycloakService]
+  //   }
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
